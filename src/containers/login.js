@@ -12,13 +12,15 @@ export default class login extends Component {
           name: 'Username',
           placeholder: 'Username',
           type: 'username',
-          required: true
+          required: true,
+          key: 0
         },
         {
           name: 'Password',
           placeholder: 'Password',
           type: 'password',
-          required: true
+          required: true,
+          key: 1
         }
       
       ]

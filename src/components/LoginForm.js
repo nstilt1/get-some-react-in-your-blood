@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Input from './input';
+import Submit from './submit';
 
 export default class LoginForm extends Component {
   constructor(props) {
-    console.log("constructed loginform")
     super(props);
     this.state = {
       isLoggedIn: false,
@@ -11,43 +11,61 @@ export default class LoginForm extends Component {
       password: ''
     };
   }
-
-  handleChange(event){
-    let name = this.event.name;
+render(props){
+  
+  function handleChange(event) {
+    let change = event.target.value;
+    let name = event.target.name;
     this.setState(state => ({
-      name: this.name
+      name: name
+    }))
+    /*
+    this.setState(state => ({
+      event.target.name: event.target.value
     }));
-    console.log("Got " + name + " event.");
+    */
+    console.log("Got " + change + " event.");
   }
 
-  handleSubmit(event){
+  function handleSubmit(event){
     if(event.state.username !== '' && event.state.password !== ''){
       this.setState(state => ({
         isLoggedIn: true
       }));
       this.props.logIn.bind(this,this.state.username,this.state.password);
     }
+    console.log("User: " + this.state.username);
+    console.log("Password: " + this.state.password);
   }
 
-  render() {
-
-    /*
-    if(this.state.isLoggedIn){
-      return <Link to="/">
-  }*/
-    return this.props.objects.map((object) => (
+  function FormField() {
+    return props.objects.map((object) => (
       <Input
-      
-      key={object.name} /** So the map method doesn't show a warning in console */
+      name={object.name} /** So the map method doesn't show a warning in console */
       placeholder={object.placeholder} 
       type={object.type} 
       required={object.required} 
-      onSubmit={this.handleSubmit}
+      onChange={handleChange}
+      onSubmit={handleSubmit}
+      key={object.key}
       />
     ));
-    /**
-     * {name, placeholder, type, required}
-     */
   }
+
+      /*
+      if(this.state.isLoggedIn){
+        return <Link to="/">
+    }*/
+  return (
+    <div>
+
+      <FormField/>
+      <Submit onSubmit={handleSubmit} value="Submit"/>
+    </div>
+    );
+  }
+      /**
+       * {name, placeholder, type, required}
+       */
 
 }

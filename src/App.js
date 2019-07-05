@@ -26,7 +26,8 @@ class App extends Component {
     return (
       <div>
         <Router>
-          <Route exact path={this.state.route} render={props => (
+          <Route exact path="/" />
+          <Route path={this.state.route} render={props => (
                 <React.Fragment>
                   <Login logIn={this.logIn} objects={this.state.formDetails} />
                 </React.Fragment>

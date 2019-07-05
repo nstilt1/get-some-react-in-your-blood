@@ -13,7 +13,7 @@ export default class Input extends Component {
 
   render() {
     return (
-      <div></div>
+      <button onClick={this.props.onSubmit}>{this.props.value}</button>
     )
   }
 
