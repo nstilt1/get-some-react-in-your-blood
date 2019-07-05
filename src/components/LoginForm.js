@@ -11,7 +11,8 @@ export default class LoginForm extends Component {
       password: ''
     };
   }
-render(props){
+  
+render = () => {
   
   function handleChange(event) {
     let change = event.target.value;
@@ -28,18 +29,20 @@ render(props){
   }
 
   function handleSubmit(event){
-    if(event.state.username !== '' && event.state.password !== ''){
+    /*
+    if(event.target.username !== '' && event.state.password !== ''){
       this.setState(state => ({
         isLoggedIn: true
       }));
-      this.props.logIn.bind(this,this.state.username,this.state.password);
     }
+      */
+      //this.props.logIn.bind(this,this.state.username,this.state.password);
     console.log("User: " + this.state.username);
     console.log("Password: " + this.state.password);
   }
-
+  const objs = this.props.objects;
   function FormField() {
-    return props.objects.map((object) => (
+    return objs.map((object) => (
       <Input
       name={object.name} /** So the map method doesn't show a warning in console */
       placeholder={object.placeholder} 
